@@ -2,6 +2,8 @@
 
 namespace App\Model\Table;
 
+// Validator クラスをインポートします。
+use Cake\Validation\Validator;
 use Cake\ORM\Table;
 // Text クラス
 use Cake\Utility\Text;
@@ -24,4 +26,18 @@ class ArticlesTable extends Table
             $entity->slug = substr($sluggedTitle, 0, 191);
         }
     }
+
+    public function validationDefault(Validator $validator): Validator
+    {
+        $validator
+            ->notEmptyString('title')
+            ->minLength('title', 10)
+            ->maxLength('title', 255)
+
+            ->notEmptyString('body')
+            ->minLength('body', 10);
+
+        return $validator;
+    }
+
 }
