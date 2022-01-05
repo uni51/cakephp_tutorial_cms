@@ -16,6 +16,7 @@ class ArticlesTable extends Table
     {
         // created や modified カラムを自動的に更新する
         $this->addBehavior('Timestamp');
+        $this->belongsToMany('Tags');
     }
 
     public function beforeSave(EventInterface $event, $entity, $options)
