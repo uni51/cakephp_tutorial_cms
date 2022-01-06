@@ -39,6 +39,12 @@ class ArticlesController extends AppController
             }
             $this->Flash->error(__('Unable to add your article.'));
         }
+        // タグのリストを取得
+        $tags = $this->Articles->Tags->find('list')->all();
+
+        // ビューコンテキストに tags をセット
+        $this->set('tags', $tags);
+
         $this->set('article', $article);
     }
 
@@ -53,6 +59,11 @@ class ArticlesController extends AppController
             }
             $this->Flash->error(__('Unable to update your article.'));
         }
+        // タグのリストを取得
+        $tags = $this->Articles->Tags->find('list')->all();
+
+        // ビューコンテキストに tags をセット
+        $this->set('tags', $tags);
 
         $this->set('article', $article);
     }
